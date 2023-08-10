@@ -1,0 +1,25 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "webpack-dev": "webpack --watch --mode development",
+        "webpack-prod": "webpack --mode production"
+    },
+    "devDependencies": {
+        "@popperjs/core": "^2.11.6",
+        "axios": "^1.1.2",
+        "bootstrap": "^5.2.3",
+        "laravel-mix": "^6.0.49",
+        "laravel-vite-plugin": "^0.7.5",
+        "resolve-url-loader": "^5.0.0",
+        "sass": "^1.64.2",
+        "sass-loader": "^12.1.0",
+        "vite": "^4.0.0",
+        "webpack": "^5.88.2"
+    },
+    "volta": {
+        "node": "16.20.1"
+    }
+}
