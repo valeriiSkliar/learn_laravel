@@ -7,10 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * @method static create()
- * @method static find(int $int)
+ * @method static create($data)
+ * @method static paginate()
  */
-
 class Pet extends Model
 {
     use HasFactory;
@@ -19,5 +18,8 @@ class Pet extends Model
     protected $table = 'pets';
     protected $guarded = [];
 
-
+    public function kind()
+    {
+        return $this->belongsTo(Kind::class);
+    }
 }

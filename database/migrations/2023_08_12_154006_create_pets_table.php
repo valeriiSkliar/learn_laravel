@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('image');
-            $table->integer('species')->unsigned();
             $table->integer('age')->nullable();
             $table->string('color')->nullable();
             $table->string('breed')->nullable();
             $table->date('birth_date')->nullable();
             $table->text('description')->nullable();
+            $table->unsignedBigInteger('kind_id');
             $table->boolean('is_neutered')->default(false);
             $table->boolean('is_vaccinated')->default(false);
             $table->timestamps();

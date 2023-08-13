@@ -23,19 +23,28 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 // import './bootstrap';
 //
+var clickableRows = document.querySelectorAll('.clickable-row');
 document.addEventListener('DOMContentLoaded', function () {
   // Find all clickable rows
   var clickableRows = document.querySelectorAll('.clickable-row');
 
   // Add click event listener to each row
   clickableRows.forEach(function (row) {
-    console.log('add listener');
     row.addEventListener('click', function () {
       var url = row.getAttribute('data-url');
 
       // Redirect to the URL
       window.location.href = url;
     });
+  });
+});
+var button = document.querySelector('button');
+button.addEventListener('click', function (e) {
+  // window.location.href = 'http://127.0.0.1:8000/posts' + '?title=Est tempora';
+  fetch('http://127.0.0.1:8000/posts' + '?title=Est tempora').then(function (data) {
+    return data.text();
+  }).then(function (data) {
+    return console.log(data);
   });
 });
 

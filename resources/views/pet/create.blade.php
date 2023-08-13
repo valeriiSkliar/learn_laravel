@@ -22,12 +22,20 @@
                         id="image" >
                 </div>
                 <div class="mb-3">
-                    <label for="species" class="form-label">Species</label>
-                    <input
-                        name="species"
-                        type="text"
+                    <label for="kinds" class="form-label">Kinds</label>
+                    <select
+                        name="kind_id"
                         class="form-control"
-                        id="species" >
+                        id="kinds"
+                    >
+                        @foreach($kinds as $kind)
+                            <option
+                                value="{{ $kind->id }}"
+                            >
+                                {{ $kind->title }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="age" class="form-label">Age</label>

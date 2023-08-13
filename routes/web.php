@@ -9,9 +9,14 @@ use App\Http\Controllers\Hobby\HobbyIndexController;
 use App\Http\Controllers\Hobby\HobbyShowController;
 use App\Http\Controllers\Hobby\HobbyStoreController;
 use App\Http\Controllers\Hobby\HobbyUpdateController;
-use App\Http\Controllers\HobbyController;
 use App\Http\Controllers\MainController;
-use App\Http\Controllers\PetController;
+use App\Http\Controllers\Pet\CreatePetController;
+use App\Http\Controllers\Pet\DestroyPetController;
+use App\Http\Controllers\Pet\EditPetController;
+use App\Http\Controllers\Pet\IndexPetController;
+use App\Http\Controllers\Pet\ShowPetController;
+use App\Http\Controllers\Pet\StorePetController;
+use App\Http\Controllers\Pet\UpdatePetController;
 use App\Http\Controllers\Post\CategoryController;
 use App\Http\Controllers\Post\CreateController;
 use App\Http\Controllers\Post\DestroyController;
@@ -67,14 +72,25 @@ Route::group(['namespace'=>'Hobby'], function () {
 
 
 //pets
-Route::get('/pets', [PetController::class, 'index'])->name('pet.index');
-Route::get('/pets/create/', [PetController::class, 'create'])->name('pet.create');
-Route::post('/pets', [PetController::class, 'store'])->name('pet.store');
-Route::get('/pets/{pet}', [PetController::class, 'show'])->name('pet.show');
-Route::get('/pets/{pet}/edit', [PetController::class, 'edit'])->name('pet.edit');
-Route::patch('/pets/{pet}', [PetController::class, 'update'])->name('pet.update');
-Route::delete('/pets/{pet}', [PetController::class, 'destroy'])->name('pet.delete');
+Route::group(['namespace'=>'Pet'], function () {
+    Route::get('/pets', [IndexPetController::class, '__invoke'])->name('pet.index');
+    Route::get('/pets/create/', [CreatePetController::class, '__invoke'])->name('pet.create');
+    Route::post('/pets', [StorePetController::class, '__invoke'])->name('pet.store');
+    Route::get('/pets/{pet}', [ShowPetController::class, '__invoke'])->name('pet.show');
+    Route::get('/pets/{pet}/edit', [EditPetController::class, '__invoke'])->name('pet.edit');
+    Route::patch('/pets/{pet}', [UpdatePetController::class, '__invoke'])->name('pet.update');
+    Route::delete('/pets/{pet}', [DestroyPetController::class, '__invoke'])->name('pet.delete');
+});
 
+
+Route::get('/your-route', function () {
+    $data = [
+        'key1' => 'value1',
+        'key2' => 'value2',
+    ];
+
+    return response()->json($data);
+});
 
 
 //Route::get('/posts/update/', [PostController::class, 'update']);

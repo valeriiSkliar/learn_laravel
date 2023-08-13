@@ -27,5 +27,8 @@
                 </a>
             @endforeach
         </div>
+        <div class="my-4 pagination d-flex justify-content-center">
+            {{ $pets->links() }}
+        </div>
     </div>
 @endsection

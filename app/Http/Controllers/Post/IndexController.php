@@ -6,9 +6,13 @@ use App\Http\Filters\PostFilter;
 use App\Http\Requests\Post\IndexFilterRequest;
 use App\Models\Category;
 use App\Models\Post;
+use Illuminate\Contracts\Container\BindingResolutionException;
 
 class IndexController extends BaseController
 {
+    /**
+     * @throws BindingResolutionException
+     */
     public function __invoke(IndexFilterRequest $request)
     {
         $data = $request->validated();

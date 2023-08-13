@@ -1,5 +1,8 @@
 @extends('layouts.main')
 @section('content')
+    <button class="button">
+        test
+    </button>
     <div class="container mt-5">
         <div class="row">
             <div class="col-4">
