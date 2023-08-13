@@ -22,16 +22,16 @@ class StorePetRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255', // Name is required, must be a string and cannot exceed 255 characters
-            'image' => 'string', // Name is required, must be a string and cannot exceed 255 characters
-            'age' => 'nullable|integer', // Age is optional, but if provided must be an integer
-            'color' => 'nullable|string|max:255', // Color is optional, but if provided must be a string and cannot exceed 255 characters
-            'breed' => 'nullable|string|max:255', // Breed is optional, but if provided must be a string and cannot exceed 255 characters
-            'birth_date' => 'nullable|date', // Birth date is optional, but if provided must be a date
-            'description' => 'nullable|string', // Description is optional, but if provided must be a string
-            'kind_id' => 'required|integer', // Species is required, must be a string and cannot exceed 255 characters
-            'is_neutered' => 'boolean', // Is neutered is required and must be a boolean
-            'is_vaccinated' => 'boolean', // Is vaccinated is required and must be a boolean
+            'name' => 'required|string|max:255',
+            'image' => 'string',
+            'age' => 'nullable|integer',
+            'color' => 'nullable|string|max:255',
+            'breed' => 'nullable|string|max:255',
+            'birth_date' => 'nullable|date',
+            'description' => 'nullable|string',
+            'kind_id' => 'required|integer',
+            'is_neutered' => 'boolean',
+            'is_vaccinated' => 'boolean',
         ];
     }
 }

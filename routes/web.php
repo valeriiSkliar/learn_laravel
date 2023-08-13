@@ -1,6 +1,11 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Admin\IndexAdminController;
+use App\Http\Controllers\Admin\Pet\EditAdminPetController;
+use App\Http\Controllers\Admin\Pet\IndexAdminPetController;
+use App\Http\Controllers\Admin\Pet\UpdateAdminPetController;
+use App\Http\Controllers\Admin\Post\IndexAdminPostController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\Hobby\HobbyCreateController;
 use App\Http\Controllers\Hobby\HobbyDestroyController;
@@ -9,6 +14,7 @@ use App\Http\Controllers\Hobby\HobbyIndexController;
 use App\Http\Controllers\Hobby\HobbyShowController;
 use App\Http\Controllers\Hobby\HobbyStoreController;
 use App\Http\Controllers\Hobby\HobbyUpdateController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Pet\CreatePetController;
 use App\Http\Controllers\Pet\DestroyPetController;
@@ -38,10 +44,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//'prefix'=> 'admin'
+Route::group(['namespace' => 'Admin'],function() {
+    Route::get('/admin', [IndexAdminController::class, '__invoke'])->name('admin.index');
+    Route::group(['namespace' => 'Post','prefix'=> 'admin'],function() {
+        Route::get('/post', [IndexAdminPostController::class, '__invoke'])->name('admin.post.index');
+    });
+    Route::group(['namespace' => 'Pets','prefix'=> 'admin'],function() {
+        Route::get('/pet', [IndexAdminPetController::class, '__invoke'])->name('admin.pet.index');
+        Route::get('/pet/{pet}', [EditAdminPetController::class, '__invoke'])->name('admin.pet.edit');
+        Route::patch('/pet/{pet}', [UpdateAdminPetController::class, '__invoke'])->name('admin.pet.update');
+    });
+});
 
-Route::get('/admin', [MainController::class, 'admin'])->name('main.admin');
 Route::get('/main', [MainController::class, 'index'])->name('main.index');
-Route::get('/', [MainController::class, 'index'])->name('main.index');
+Route::get('/', [HomeController::class, 'index'])->name('main.index');
 Route::get('/contacts', [ContactsController::class, 'index'])->name('contact.index');
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 
@@ -83,14 +100,6 @@ Route::group(['namespace'=>'Pet'], function () {
 });
 
 
-Route::get('/your-route', function () {
-    $data = [
-        'key1' => 'value1',
-        'key2' => 'value2',
-    ];
-
-    return response()->json($data);
-});
 
 
 //Route::get('/posts/update/', [PostController::class, 'update']);
@@ -102,3 +111,7 @@ Route::get('/your-route', function () {
 //Route::get('my_job', [MyWorkPageController::class,'index']);
 //Route::get('my_daughter', [MyDaughterPageController::class, 'index']);
 //Route::get('my_city', [MyCityPage::class, 'index']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

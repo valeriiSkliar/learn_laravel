@@ -1,5 +1,8 @@
 @extends('layouts.main')
 @section('content')
+    <input
+        class="mb-5"
+        name="name" type="text" id="pet-filter" placeholder="Filter by name">
     <div class="container ">
         <div class="row mb-3">
             <div class="col-4">
@@ -8,7 +11,7 @@
                     href="{{ route('pet.create') }}">Add pet</a>
             </div>
         </div>
-        <div class="row">
+        <div id="pet_list" class="row">
             @foreach($pets as $pet)
                 <a
                     class="col"
@@ -28,7 +31,7 @@
             @endforeach
         </div>
         <div class="my-4 pagination d-flex justify-content-center">
-            {{ $pets->links() }}
+            {{ $pets->withQueryString()->links() }}
         </div>
     </div>
 @endsection

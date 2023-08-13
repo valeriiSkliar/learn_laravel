@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-6">
-            <form action="{{ route('pet.update', $pet->id)}}" method="post">
+            <form action="{{ route('admin.pet.update', $pet->id)}}" method="post">
                 @csrf
                 @method('patch')
                 <div class="mb-3">
