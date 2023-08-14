@@ -44,12 +44,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//'prefix'=> 'admin'
+
 Route::group(['namespace' => 'Admin'],function() {
     Route::get('/admin', [IndexAdminController::class, '__invoke'])->name('admin.index');
+
     Route::group(['namespace' => 'Post','prefix'=> 'admin', 'middleware' => 'admin'],function() {
         Route::get('/post', [IndexAdminPostController::class, '__invoke'])->name('admin.post.index');
     });
+
     Route::group(['namespace' => 'Pets','prefix'=> 'admin'],function() {
         Route::get('/pet', [IndexAdminPetController::class, '__invoke'])->name('admin.pet.index');
         Route::get('/pet/{pet}', [EditAdminPetController::class, '__invoke'])->name('admin.pet.edit');
